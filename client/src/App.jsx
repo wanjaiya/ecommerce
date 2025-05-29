@@ -10,6 +10,10 @@ import AdminOrders from "./pages/admin-view/orders";
 import AdminFeatures from "./pages/admin-view/features";
 import ShoppingLayout from "./components/shopping-view/layout";
 import NotFound from "./components/not-found";
+import ShoppingHome from "./pages/shoping-view/home";
+import ShoppingAccount from "./pages/shoping-view/account";
+import ShoppingCheckout from "./pages/shoping-view/checkout";
+import ShoppingListing from "./pages/shoping-view/listing";
 
 function App() {
   return (
@@ -33,7 +37,12 @@ function App() {
         </Route>
 
         {/* Shopping routes*/}
-        <Route path="/shop" element={<ShoppingLayout />}></Route>
+        <Route path="/shop" element={<ShoppingLayout />}>
+          <Route path="home" element={<ShoppingHome />} />
+          <Route path="account" element={<ShoppingAccount />} />
+          <Route path="checkout" element={<ShoppingCheckout />} />
+          <Route path="listing" element={<ShoppingListing />} />
+        </Route>
 
         {/* Not Found route */}
         <Route path="*" element={<NotFound />}></Route>
