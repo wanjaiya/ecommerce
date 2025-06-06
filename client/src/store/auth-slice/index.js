@@ -10,15 +10,14 @@ const initialState = {
 export const registerUser = createAsyncThunk(
   "/auth/register",
   async (formData) => {
-    axios.defaults.withCredentials = true;
-    await axios
-      .post("http://localhost:5000/api/auth/register", formData)
-      .then((response) => {
-        return response.data;
-      })
-      .catch((e) => {
-        console.log(e);
-      });
+    const response = await axios.post(
+      "http://localhost:5000/api/auth/register",
+      formData,
+      {
+        withCredentials: true,
+      }
+    );
+    return response.data;
   }
 );
 
@@ -33,12 +32,12 @@ const authSlice = createSlice({
       .addCase(registerUser.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(registerUser.fulfilled, (state) => {
+      .addCase(registerUser.fulfilled, (state, action) => {
         state.isLoading = false;
         state.user = null;
         state.isAuthenticated = false;
       })
-      .addCase(registerUser.rejected, (state) => {
+      .addCase(registerUser.rejected, (state, action) => {
         state.isLoading = false;
         state.user = null;
         state.isAuthenticated = false;

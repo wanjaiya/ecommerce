@@ -5,19 +5,21 @@ const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const authRouter = require("./routes/auth/auth-routes");
 
-//create a connection to the database
+// Initialize express server
+const app = express();
+
+// Set port to be used by backend
+const port = process.env.PORT || 5000;
+
 connectDB();
 
-const app = express();
-const PORT = process.env.PORT || 5000;
+const allowedOrigins = ["http://localhost:5173"];
 
-// Middleware to parse JSON requests
 app.use(express.json());
 app.use(cookieParser());
-
 app.use(
   cors({
-    origin: "*",
+    origin: allowedOrigins,
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: [
       "Content-Type",
@@ -30,8 +32,8 @@ app.use(
   })
 );
 
+//API Endpoints
+app.get("/", (req, res) => res.send("API Working"));
 app.use("/api/auth", authRouter);
 
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
+app.listen(port, () => console.log(`Server startes on PORT:${port}`));

@@ -4,8 +4,6 @@ const User = require("../../models/User");
 
 //register
 const registerUser = async (req, res) => {
-  console.log(req.body);
-
   const { username, email, password } = req.body;
   try {
     //Hash password
@@ -13,7 +11,7 @@ const registerUser = async (req, res) => {
     const newuser = new User({
       username,
       email,
-      hashpassword,
+      password: hashpassword,
     });
 
     await newuser.save();
