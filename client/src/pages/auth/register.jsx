@@ -5,6 +5,8 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "sonner";
+import Cookies from "js-cookie";
+
 const initialState = {
   username: "",
   email: "",
@@ -21,9 +23,15 @@ function AuthRegister() {
     dispatch(registerUser(formData)).then((data) => {
       console.log(data);
       if (data?.payload?.success) {
-        toast(data?.payload?.message);
+        toast.success(data?.payload?.message);
+        Cookies.set("email", data?.payload?.email, {
+          expires: 7,
+          secure: true,
+        });
 
-        navigate("/auth/login");
+        navigate("/auth/account-verify");
+      } else {
+        toast.error(data?.payload?.message);
       }
     });
 

@@ -9,7 +9,7 @@ const authRouter = require("./routes/auth/auth-routes");
 const app = express();
 
 // Set port to be used by backend
-const port = process.env.PORT || 5000;
+const port = 4000;
 
 connectDB();
 

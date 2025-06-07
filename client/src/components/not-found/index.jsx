@@ -1,5 +1,5 @@
 function NotFound() {
-  return <div>Page doesn't exist</div>;
+  return <div>You don't have access to view this page</div>;
 }
 
 export default NotFound;
