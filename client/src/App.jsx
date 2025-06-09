@@ -34,7 +34,7 @@ function App() {
   if (isLoading)
     return (
       <div>
-        <Skeleton className="h-[600px] w-[600px]" />
+        <Skeleton className="h-[20px] w-[100px] rounded-full" />
       </div>
     );
 
