@@ -4,6 +4,7 @@ const connectDB = require("./database/db");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const authRouter = require("./routes/auth/auth-routes");
+const adminProductsRouter = require("./routes/admin/products-routes");
 
 // Initialize express server
 const app = express();
@@ -35,5 +36,6 @@ app.use(
 //API Endpoints
 app.get("/", (req, res) => res.send("API Working"));
 app.use("/api/auth", authRouter);
+app.use("/api/admin/products", adminProductsRouter);
 
 app.listen(port, () => console.log(`Server startes on PORT:${port}`));
