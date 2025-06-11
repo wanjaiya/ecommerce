@@ -1,4 +1,5 @@
 import ProductImageUpload from "@/components/admin-view/image-upload";
+import AdminProductTile from "@/components/admin-view/product-tile";
 import CommonForm from "@/components/common/form";
 import { Button } from "@/components/ui/button";
 import {
@@ -11,6 +12,7 @@ import { addProductFormElements } from "@/config";
 import { addNewProduct, fetchAllProducts } from "@/store/admin/products-slice";
 import { Fragment, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+
 import { toast } from "sonner";
 
 const initialFormData = {
@@ -65,7 +67,13 @@ function AdminProducts() {
           Add New Product
         </Button>
       </div>
-      <div className="grid gap-4 md:grid-cols-3 lg:grid-cols-4 "></div>
+      <div className="grid gap-4 md:grid-cols-3 lg:grid-cols-4 ">
+        {productList && productList.length > 0
+          ? productList.map((productItem) => (
+              <AdminProductTile product={productItem} />
+            ))
+          : null}
+      </div>
 
       <Sheet
         open={openCreateProductsDialog}
