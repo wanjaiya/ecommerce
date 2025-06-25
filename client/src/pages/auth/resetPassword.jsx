@@ -116,7 +116,7 @@ function ResetPassword() {
 
           <CommonForm
             formControls={resetEmailFormControls}
-            buttonText={"Sign in"}
+            buttonText={"Submit"}
             formData={formData}
             setFormData={setFormData}
             onSubmit={onSubmitEmail}
