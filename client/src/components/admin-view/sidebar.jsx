@@ -3,6 +3,7 @@ import {
   LayoutDashboard,
   ShoppingBasket,
   BadgeCheck,
+  GroupIcon,
 } from "lucide-react";
 import { Fragment } from "react";
 import { useNavigate } from "react-router-dom";
@@ -26,6 +27,13 @@ const adminSidebarMenuItems = [
     label: "Orders",
     path: "/admin/orders",
     icon: <BadgeCheck />,
+  },
+
+  {
+    id: "category",
+    label: "Category",
+    path: "/admin/categories",
+    icon: <GroupIcon />,
   },
 ];
 

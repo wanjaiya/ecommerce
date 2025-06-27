@@ -20,6 +20,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { checkAuth } from "./store/auth-slice";
 import { Skeleton } from "@/components/ui/skeleton";
 import ResetPassword from "./pages/auth/resetPassword";
+import AdminCategories from "./pages/admin-view/categories";
 
 function App() {
   const { isAuthenticated, user, isLoading, verify } = useSelector(
@@ -79,6 +80,7 @@ function App() {
           <Route path="products" element={<AdminProducts />} />
           <Route path="orders" element={<AdminOrders />} />
           <Route path="features" element={<AdminFeatures />} />
+          <Route path="categories" element={<AdminCategories />} />
           {/* Add more admin routes as needed */}
         </Route>
 

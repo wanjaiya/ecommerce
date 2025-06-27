@@ -121,6 +121,16 @@ export const addProductFormElements = [
   },
 ];
 
+export const addCategoryFormElements = [
+  {
+    label: "Title",
+    name: "title",
+    componentType: "input",
+    type: "text",
+    placeholder: "Enter Category title",
+  },
+];
+
 export const shoppingViewHeaderMenuItems = [
   {
     id: "home",
@@ -154,6 +164,23 @@ export const shoppingViewHeaderMenuItems = [
   },
 ];
 
+export const categoryOptionsMap = {
+  men: "Menu",
+  women: "Women",
+  kids: "Kids",
+  accessories: "Accessories",
+  footware: "Footware",
+};
+
+export const brandOptionsMap = {
+  nike: "Nike",
+  adidas: "Adidas",
+  puma: "Puma",
+  levi: "Levi",
+  zara: "Zara",
+  "h&m": "H&M",
+};
+
 export const filterOptions = {
   categories: [
     { id: "men", label: "Men" },
@@ -171,3 +198,10 @@ export const filterOptions = {
     { id: "h&m", label: "H&M" },
   ],
 };
+
+export const sortOptions = [
+  { id: "price-lowtohigh", label: "Price Low to High" },
+  { id: "price-hightolow", label: "Price High to Low" },
+  { id: "price-atoz", label: "Price A to Z" },
+  { id: "price-ztoa", label: "Price Z to A" },
+];

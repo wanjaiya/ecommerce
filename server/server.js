@@ -5,6 +5,8 @@ const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const authRouter = require("./routes/auth/auth-routes");
 const adminProductsRouter = require("./routes/admin/products-routes");
+const adminCategoryRouter = require("./routes/admin/category-routes");
+const shopProductsRouter = require("./routes/shop/products-routes");
 
 // Initialize express server
 const app = express();
@@ -36,6 +38,11 @@ app.use(
 //API Endpoints
 app.get("/", (req, res) => res.send("API Working"));
 app.use("/api/auth", authRouter);
+
+//Admin routes
 app.use("/api/admin/products", adminProductsRouter);
+app.use("/api/admin/categories", adminCategoryRouter);
+
+app.use("/api/shop/products", shopProductsRouter);
 
 app.listen(port, () => console.log(`Server startes on PORT:${port}`));
