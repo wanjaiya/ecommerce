@@ -9,6 +9,8 @@ import {
   SheetTitle,
 } from "@/components/ui/sheet";
 import { addProductFormElements } from "@/config";
+import { fetchAllCategories } from "@/store/admin/category-slice";
+import { fetchAllBrands } from "@/store/admin/brand-slice";
 import {
   addNewProduct,
   deleteProduct,
@@ -39,6 +41,26 @@ function AdminProducts() {
   const [imageLoadingState, setImageLoadingState] = useState(false);
   const [currentEditedId, setCurrentEditedId] = useState(null);
   const { productList } = useSelector((state) => state.adminProducts);
+  const { categoryList } = useSelector((state) => state.adminCategories);
+  const { brandList } = useSelector((state) => state.adminBrands);
+  let categories = [];
+  let brands = [];
+
+  categoryList.map((categoryItem) => {
+    categories.push({ id: categoryItem._id, label: categoryItem.title });
+  });
+
+  if (Array.isArray(categories) && categories.length > 0) {
+    addProductFormElements[2]["options"] = categories;
+  }
+
+  brandList.map((brandItem) => {
+    brands.push({ id: brandItem._id, label: brandItem.title });
+  });
+
+  if (Array.isArray(brands) && brands.length > 0) {
+    addProductFormElements[3]["options"] = brands;
+  }
 
   const dispatch = useDispatch();
 
@@ -94,6 +116,8 @@ function AdminProducts() {
 
   useEffect(() => {
     dispatch(fetchAllProducts());
+    dispatch(fetchAllCategories());
+    dispatch(fetchAllBrands());
   }, [dispatch]);
 
   return (

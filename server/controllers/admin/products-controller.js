@@ -63,7 +63,11 @@ const addProduct = async (req, res) => {
 //fecth all products
 const fethAllProduct = async (req, res) => {
   try {
-    const listofProducts = await Product.find({});
+    const listofProducts = await Product.find({})
+      .populate("category")
+      .populate("brand");
+
+    console.log(listofProducts);
     return res.status(200).json({
       success: true,
       data: listofProducts,

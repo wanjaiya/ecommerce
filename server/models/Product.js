@@ -1,4 +1,6 @@
 const mongoose = require("mongoose");
+const Category = require("./Category");
+const Brand = require("./Brand");
 
 const ProductSchema = new mongoose.Schema(
   {
@@ -12,12 +14,12 @@ const ProductSchema = new mongoose.Schema(
     },
     description: String,
     category: {
-      type: String,
-      required: true,
+      type: mongoose.Types.ObjectId,
+      ref: Category,
     },
     brand: {
-      type: String,
-      required: true,
+      type: mongoose.Types.ObjectId,
+      ref: Brand,
     },
     price: {
       type: Number,

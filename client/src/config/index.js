@@ -1,3 +1,6 @@
+import React from "react";
+import { useSelector } from "react-redux";
+
 export const registerFormControls = [
   {
     name: "username",
@@ -77,26 +80,13 @@ export const addProductFormElements = [
     label: "Category",
     name: "category",
     componentType: "select",
-    options: [
-      { id: "men", label: "Men" },
-      { id: "women", label: "Women" },
-      { id: "kids", label: "Kids" },
-      { id: "accessories", label: "Accessories" },
-      { id: "footwear", label: "Footwear" },
-    ],
+    options: [],
   },
   {
     label: "Brand",
     name: "brand",
     componentType: "select",
-    options: [
-      { id: "nike", label: "Nike" },
-      { id: "adidas", label: "Adidas" },
-      { id: "puma", label: "Puma" },
-      { id: "levi", label: "Levi's" },
-      { id: "zara", label: "Zara" },
-      { id: "h&m", label: "H&M" },
-    ],
+    options: [],
   },
   {
     label: "Price",
@@ -128,6 +118,16 @@ export const addCategoryFormElements = [
     componentType: "input",
     type: "text",
     placeholder: "Enter Category title",
+  },
+];
+
+export const addBrandFormElements = [
+  {
+    label: "Title",
+    name: "title",
+    componentType: "input",
+    type: "text",
+    placeholder: "Enter Brand title",
   },
 ];
 

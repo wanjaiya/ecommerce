@@ -21,6 +21,7 @@ import { checkAuth } from "./store/auth-slice";
 import { Skeleton } from "@/components/ui/skeleton";
 import ResetPassword from "./pages/auth/resetPassword";
 import AdminCategories from "./pages/admin-view/categories";
+import AdminBrands from "./pages/admin-view/brands";
 
 function App() {
   const { isAuthenticated, user, isLoading, verify } = useSelector(
@@ -81,6 +82,7 @@ function App() {
           <Route path="orders" element={<AdminOrders />} />
           <Route path="features" element={<AdminFeatures />} />
           <Route path="categories" element={<AdminCategories />} />
+          <Route path="brands" element={<AdminBrands />} />
           {/* Add more admin routes as needed */}
         </Route>
 

@@ -1,4 +1,4 @@
-import AdminCategoryTile from "@/components/admin-view/category-tile";
+import AdminBrandTile from "@/components/admin-view/brand-tile";
 import CommonForm from "@/components/common/form";
 import { Button } from "@/components/ui/button";
 import {
@@ -7,13 +7,13 @@ import {
   SheetHeader,
   SheetTitle,
 } from "@/components/ui/sheet";
-import { addCategoryFormElements } from "@/config";
+import { addBrandFormElements } from "@/config";
 import {
-  addNewCategory,
-  deleteCategory,
-  editCategory,
-  fetchAllCategories,
-} from "@/store/admin/category-slice";
+  addNewBrand,
+  deleteBrand,
+  editBrand,
+  fetchAllBrands,
+} from "@/store/admin/brand-slice";
 import { Fragment, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -29,12 +29,11 @@ const initialFormData = {
   title: "",
 };
 
-function AdminCategories() {
-  const [openCreateCategoryDialog, setOpenCreateCategoryDialog] =
-    useState(false);
+function AdminBrands() {
+  const [openCreateBrandDialog, setOpenCreateBrandDialog] = useState(false);
   const [formData, setFormData] = useState(initialFormData);
   const [currentEditedId, setCurrentEditedId] = useState(null);
-  const { categoryList } = useSelector((state) => state.adminCategories);
+  const { brandList } = useSelector((state) => state.adminBrands);
   let counter = 1;
 
   const dispatch = useDispatch();
@@ -44,38 +43,38 @@ function AdminCategories() {
 
     currentEditedId !== null
       ? dispatch(
-          editCategory({
+          editBrand({
             id: currentEditedId,
             formData,
           })
         ).then((data) => {
           console.log(data, "edit");
           if (data?.payload?.success) {
-            dispatch(fetchAllCategories());
+            dispatch(fetchAllBrands());
             setFormData(initialFormData);
-            setOpenCreateCategoryDialog(false);
+            setOpenCreateBrandDialog(false);
             setCurrentEditedId(null);
           }
         })
       : dispatch(
-          addNewCategory({
+          addNewBrand({
             ...formData,
           })
         ).then((data) => {
           console.log(data);
           if (data?.payload?.success) {
-            dispatch(fetchAllCategories());
-            setOpenCreateCategoryDialog(false);
+            dispatch(fetchAllBrands());
+            setOpenCreateBrandDialog(false);
             setFormData(initialFormData);
-            toast("Category added successfully");
+            toast("Brand added successfully");
           }
         });
   }
 
   function handleDelete(getCurrentProductId) {
-    dispatch(deleteCategory(getCurrentProductId)).then((data) => {
+    dispatch(deleteBrand(getCurrentProductId)).then((data) => {
       if (data?.payload.success) {
-        dispatch(fetchAllCategories());
+        dispatch(fetchAllBrands());
       }
     });
   }
@@ -87,18 +86,20 @@ function AdminCategories() {
   }
 
   useEffect(() => {
-    dispatch(fetchAllCategories());
+    dispatch(fetchAllBrands());
   }, [dispatch]);
+
+  console.log(brandList);
 
   return (
     <Fragment>
       <div className="mb-5 w-full flex justify-end">
-        <Button onClick={() => setOpenCreateCategoryDialog(true)}>
-          Add New Category
+        <Button onClick={() => setOpenCreateBrandDialog(true)}>
+          Add New Brand
         </Button>
       </div>
       <div>
-        {categoryList && categoryList.length > 0 ? (
+        {brandList && brandList.length > 0 ? (
           <div className="rounded-md border">
             <Table className="w-full max-wsm mx-auto pt-0">
               <TableHeader>
@@ -109,11 +110,11 @@ function AdminCategories() {
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {categoryList.map((categoryItem) => (
-                  <AdminCategoryTile
-                    category={categoryItem}
+                {brandList.map((brandItem) => (
+                  <AdminBrandTile
+                    brand={brandItem}
                     setCurrentEditedId={setCurrentEditedId}
-                    setOpenCreateCategoryDialog={setOpenCreateCategoryDialog}
+                    setOpenCreateBrandDialog={setOpenCreateBrandDialog}
                     setFormData={setFormData}
                     handleDelete={handleDelete}
                     counter={counter++}
@@ -126,9 +127,9 @@ function AdminCategories() {
       </div>
 
       <Sheet
-        open={openCreateCategoryDialog}
+        open={openCreateBrandDialog}
         onOpenChange={() => {
-          setOpenCreateCategoryDialog(false);
+          setOpenCreateBrandDialog(false);
           setCurrentEditedId(null);
           setFormData(initialFormData);
         }}
@@ -136,16 +137,14 @@ function AdminCategories() {
         <SheetContent side="right" className="overflow-auto px-4">
           <SheetHeader>
             <SheetTitle>
-              {currentEditedId !== null ? "Edit Category" : "Add New Category"}
+              {currentEditedId !== null ? "Edit Brand" : "Add New Brand"}
             </SheetTitle>
           </SheetHeader>
 
           <div className="py-6">
             <CommonForm
-              formControls={addCategoryFormElements}
-              buttonText={
-                currentEditedId !== null ? "Edit Category" : "Add Category"
-              }
+              formControls={addBrandFormElements}
+              buttonText={currentEditedId !== null ? "Edit Brand" : "Add Brand"}
               formData={formData}
               setFormData={setFormData}
               onSubmit={onSubmit}
@@ -158,4 +157,4 @@ function AdminCategories() {
   );
 }
 
-export default AdminCategories;
+export default AdminBrands;

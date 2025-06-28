@@ -4,6 +4,7 @@ import {
   ShoppingBasket,
   BadgeCheck,
   GroupIcon,
+  BracketsIcon,
 } from "lucide-react";
 import { Fragment } from "react";
 import { useNavigate } from "react-router-dom";
@@ -34,6 +35,12 @@ const adminSidebarMenuItems = [
     label: "Category",
     path: "/admin/categories",
     icon: <GroupIcon />,
+  },
+  {
+    id: "brand",
+    label: "Brands",
+    path: "/admin/brands",
+    icon: <BracketsIcon />,
   },
 ];
 

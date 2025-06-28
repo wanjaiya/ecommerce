@@ -6,6 +6,7 @@ const cookieParser = require("cookie-parser");
 const authRouter = require("./routes/auth/auth-routes");
 const adminProductsRouter = require("./routes/admin/products-routes");
 const adminCategoryRouter = require("./routes/admin/category-routes");
+const adminBrandRouter = require("./routes/admin/brand-routes");
 const shopProductsRouter = require("./routes/shop/products-routes");
 
 // Initialize express server
@@ -42,6 +43,7 @@ app.use("/api/auth", authRouter);
 //Admin routes
 app.use("/api/admin/products", adminProductsRouter);
 app.use("/api/admin/categories", adminCategoryRouter);
+app.use("/api/admin/brands", adminBrandRouter);
 
 app.use("/api/shop/products", shopProductsRouter);
 

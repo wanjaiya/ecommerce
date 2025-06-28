@@ -4,6 +4,7 @@ import { Button } from "../ui/button";
 import { Card, CardContent, CardFooter } from "../ui/card";
 
 function ShoppingProductTile({ product }) {
+  console.log(product);
   return (
     <Card className="w-full max-w-sm mx-auto pt-0">
       <div>
@@ -23,10 +24,10 @@ function ShoppingProductTile({ product }) {
           <h2 className="text-xl font-bold mb-2">{product?.title}</h2>
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-muted-foreground">
-              {categoryOptionsMap[product?.category]}
+              {product?.category ? product?.category.title : ""}
             </span>
             <span className="text-sm text-muted-foreground">
-              {brandOptionsMap[product?.brand]}
+              {product?.brand ? product?.brand.title : ""}
             </span>
           </div>
           <div className="flex items-center justify-between mb-2">
